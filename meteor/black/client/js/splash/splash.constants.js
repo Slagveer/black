@@ -4,20 +4,29 @@ if (Meteor.isClient) {
         .constant({
             'SplashConstants': {
                 'position': {
-                    'xPyramideStart': 0,
-                    'yPyramideStart': -2000,
+                    'xFistStart': 0,
+                    'yFistStart': -2000,
+                    'alphaFistStart': 0,
+                    'alphaFistEnd': 1,
                     'yHeadStart': 2000,
                     'yHeadDiffEnd': 270,
                     'yBlakaStart': -2000,
-                    'yBlakaDiffEnd': 0
+                    'yBlakaDiffEnd': -50,
+                    'yStartButtonStart': 2000,
+                    'yStartButtonDiffEnd': 300
                 },
                 'startDelay': 4000,
-                'pyramideDuration': 4000,
-                'pyramideImage': 'pyramide.fw.png',
-                'headDuration': 3000,
-                'headImage': 'head.fw.png',
-                'blakaDuration': 2000,
-                'blakaImage': 'b.l.a.k.a.fw.png'
+                'fistDuration': 1000,
+                'fistImage': 'fist.fw.png',
+                'blakaDuration': 1200,
+                'blakaImage': 'b.l.a.k.a.fw.png',
+                'alphaBlakaStart': 0,
+                'alphaBlakaEnd': 1,
+                'startButtonDuration': 1800,
+                'startButtonImage': 'startbutton.fw.png',
+                'startButtonOverImage': 'startbuttonover.fw.png',
+                'alphaStartButtonStart': 0,
+                'alphaStartButtonEnd': 0
             }
         });
 }

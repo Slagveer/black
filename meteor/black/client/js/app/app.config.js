@@ -23,15 +23,10 @@ if (Meteor.isClient) {
                             controllerAs: 'gameController'
                         }
                     }
-                }).state('splash', {
-                    url: '/splash',
-                    views: {
-                        'splashView@' : {
-                            templateUrl: 'client/js/splash/splash.ng.html',
-                            controller: 'LevelsController',
-                            controllerAs: 'levelsController'
-                        }
-                    }
+                }).state('game.splash', {
+                    url: '/splash'
+                }).state('game.modes', {
+                    url: '/modes'
                 });
 
             $interpolateProvider.startSymbol('[[').endSymbol(']]');

@@ -9,5 +9,6 @@ angular
         'ui.router',
         'black.game',
         'black.splash',
+        'black.modes',
         'black.levels'
     ]);

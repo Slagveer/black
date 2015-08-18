@@ -26,9 +26,9 @@
         }
     }
 
-    GameScreenController.$inject = ['$scope', '$window','GameConstants'];
+    GameScreenController.$inject = ['$scope', '$window', '$state', 'GameConstants'];
 
-    function GameScreenController($scope, $window, GameConstants) {
+    function GameScreenController($scope, $window, $state, GameConstants) {
         var vm = this;
 
         vm.go = go;
@@ -72,6 +72,8 @@
             vm.stage = new PIXI.Container();
 
             requestAnimationFrame(animate);
+
+            $state.go('game.splash');
         }
 
         function resizeCanvas() {
