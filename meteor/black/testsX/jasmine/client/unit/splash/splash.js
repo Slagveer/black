@@ -1,32 +1,59 @@
 describe('Splash', function () {
     beforeEach(module('black'));
 
-    describe('SplashController', function () {
-        var $controller = {}, levels = {}, $scope = {};
+    describe('directive: splashScreen', function() {
+        var element, scope, state;
+        var splashScreen;
 
-        beforeEach(inject(function (_$controller_) {
-            $controller = _$controller_;
+        beforeEach(module('black.splash'));
+
+        beforeEach(inject(function ($rootScope, $compile, $state) {
+            scope = $rootScope.$new();
+            state = $state;
+
+            element = '<game-screen><splash-screen></splash-screen></game-screen>';
+
+            element = $compile(element)(scope);
+            scope.$digest();
         }));
 
-        beforeEach(function () {
-            levels = {
-                getCollection: function () {
-                    return [];
-                },
-                insert: function () {
+        describe('Init', function () {
+            it("containers are initialized", function () {
+                var isolated = element.find('splash-screen').isolateScope();
+                expect(typeof isolated.vm.blaka).toBe('object');
+                expect(typeof isolated.vm.fist).toBe('object');
+                expect(typeof isolated.vm.startButton).toBe('object');
+            });
 
-                }
-            };
+            it('state is set', function() {
+                expect(state.current.name).toEqual('game.splash');
+                expect(state.current.url).toEqual('/splash');
+            });
         });
 
-        it('SplashController', function () {
-            var expected = [{_id: 1, text: 'my message'}];
-            spyOn(levels, 'getCollection').and.returnValue(expected);
-            $controller('SplashController', {
-                $scope: $scope,
-                levels: levels
+        describe('State change', function () {
+            beforeEach(function() {
+                var isolated = element.find('splash-screen').isolateScope();
+                splashScreen = isolated.vm;
+                spyOn(splashScreen, 'init');
             });
-            expect($scope.levels).toBe(expected);
+
+            xit("tracks that the spy was called", function() {
+                expect(splashScreen.init).toHaveBeenCalled();
+            });
+
+            it('containers are invisble', function() {
+                var isolated = element.find('splash-screen').isolateScope();
+                var blaka = isolated.vm.blaka;
+                var fist = isolated.vm.fist;
+
+                expect(blaka.scale.x).toEqual(splashScreen);
+                expect(blaka.scale.y).toEqual(1);
+                state.go('game.modes');
+                scope.$digest();
+                expect(blaka.scale.x).toEqual(0);
+                expect(blaka.scale.y).toEqual(0);
+            });
         });
     });
 });

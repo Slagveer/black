@@ -44,8 +44,11 @@
 
         vm.init = init;
         vm.start = start;
-        vm.gameScreenController = null
+        vm.gameScreenController = null;
         vm.gameController = $scope.$parent.gameController;
+        vm.fist = null;
+        vm.blaka = null;
+        vm.startButton = null;
 
         vm.init();
 
@@ -54,9 +57,9 @@
         }
 
         function start() {
-            fist =  PIXI.Sprite.fromImage(SplashConstants.fistImage);
-            blaka =  PIXI.Sprite.fromImage(SplashConstants.blakaImage);
-            startButton =  PIXI.Sprite.fromImage(SplashConstants.startButtonImage);
+            vm.fist = fist =  PIXI.Sprite.fromImage(SplashConstants.fistImage);
+            vm.blaka = blaka =  PIXI.Sprite.fromImage(SplashConstants.blakaImage);
+            vm.startButton = startButton =  PIXI.Sprite.fromImage(SplashConstants.startButtonImage);
             startButtonTexture =  PIXI.Texture.fromImage(SplashConstants.startButtonImage);
             startButtonOverTexture =  PIXI.Texture.fromImage(SplashConstants.startButtonOverImage);
 

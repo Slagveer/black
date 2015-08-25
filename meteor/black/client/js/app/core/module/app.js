@@ -10,5 +10,6 @@ angular
         'black.game',
         'black.splash',
         'black.modes',
+        'black.kennis',
         'black.levels'
     ]);

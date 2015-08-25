@@ -31,7 +31,6 @@
     function GameScreenController($scope, $window, $state, GameConstants) {
         var vm = this;
 
-        vm.go = go;
         vm.addContainer = addContainer;
         vm.removeContainer = removeContainer;
         vm.stage = null;
@@ -39,10 +38,6 @@
         vm.containers = [];
 
         init();
-
-        function go() {
-            console.log(22222 + 4444);
-        }
 
         function addContainer(container) {
             vm.containers.push(container);
@@ -76,7 +71,7 @@
             $state.go('game.splash');
         }
 
-        function resizeCanvas() {
+        function resizeCanvas() { console.log($state)
             vm.renderer.width = $window.innerWidth;
             vm.renderer.height = $window.innerHeight;
         }

@@ -2,13 +2,16 @@
  * Created by Patric on 7-8-2015.
  */
 if (Meteor.isClient) {
+    Kennis = new Mongo.Collection("kennis");
+    Quiz = new Mongo.Collection("quiz");
+
     Meteor.startup(function () {
         angular
             .module('black').config( config );
 
         config.$inject = ['$urlRouterProvider', '$stateProvider', '$interpolateProvider'];
 
-        function config ( $urlRouterProvider, $stateProvider, $interpolateProvider ) {
+        function config ( $urlRouterProvider, $stateProvider, $interpolateProvider) {
 
             $urlRouterProvider
                 .otherwise("/game");
@@ -23,10 +26,24 @@ if (Meteor.isClient) {
                             controllerAs: 'gameController'
                         }
                     }
-                }).state('game.splash', {
+                })
+                .state('game.splash', {
                     url: '/splash'
-                }).state('game.modes', {
+                })
+                .state('game.modes', {
                     url: '/modes'
+                })
+                .state('game.kennis', {
+                    url: '/kennis',
+                    resolve: {
+                        'subscribe': [
+                            '$meteor', function($meteor) {
+                                return $meteor.subscribe('kennis');
+                            }
+                        ]
+                    }
+                }).state('game.quiz', {
+                    url: '/quiz'
                 });
 
             $interpolateProvider.startSymbol('[[').endSymbol(']]');

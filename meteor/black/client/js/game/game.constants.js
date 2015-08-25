@@ -9,7 +9,20 @@ if (Meteor.isClient) {
 
                 },
                 'css': {
-                    backgroundColor: 0xFFFFFF
+                    backgroundColor: 0xFFFFFF,
+                    title: {
+                        height: 200,
+                        'margin-left': 100,
+                        'margin-right': 100,
+                        'margin-top': 20,
+                        'margin-bottom': 20
+                    },
+                    description: {
+                        'margin-left': 100,
+                        'margin-right': 100,
+                        'margin-top': 20,
+                        'margin-bottom': 20
+                    }
                 }
             }
         });

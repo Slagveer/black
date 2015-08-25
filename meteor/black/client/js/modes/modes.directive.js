@@ -149,7 +149,7 @@
         function kennisButtonMouseDown() {
             startMouseOver = true;
             this.texture = kennisButtonTexture;
-            $state.go('game.modes');
+            $state.go('game.kennis');
         }
 
         function kennisButtonMouseUp() {
@@ -172,7 +172,7 @@
         function quizButtonMouseDown() {
             startMouseOver = true;
             this.texture = quizButtonTexture;
-            $state.go('game.modes');
+            $state.go('game.quiz');
         }
 
         function quizButtonMouseUp() {
