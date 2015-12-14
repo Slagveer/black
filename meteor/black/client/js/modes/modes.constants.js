@@ -10,6 +10,8 @@ if (Meteor.isClient) {
                     'yQuizButtonDiffEnd': -100
                 },
                 'startDelay': 4000,
+                'hideScreenDuration': 200,
+                'showScreenDuration': 200,
                 'kennisButtonDuration': 1800,
                 'kennisButtonImage': 'kennisbutton.fw.png',
                 'kennisButtonOverImage': 'kennisbuttonover.fw.png',

@@ -33,6 +33,9 @@ if (Meteor.isClient) {
                 .state('game.modes', {
                     url: '/modes'
                 })
+                .state('game.nextup', {
+                    url: '/nextup'
+                })
                 .state('game.kennis', {
                     url: '/kennis',
                     resolve: {

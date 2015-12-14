@@ -71,9 +71,12 @@
             $state.go('game.splash');
         }
 
-        function resizeCanvas() { console.log($state)
+        function resizeCanvas() {
             vm.renderer.width = $window.innerWidth;
             vm.renderer.height = $window.innerHeight;
+            vm.renderer.view.style.width = $window.innerWidth + 'px';
+            vm.renderer.view.style.height = $window.innerHeight + 'px';
+            vm.renderer.resize($window.innerWidth, $window.innerHeight);
         }
 
         function animate() {

@@ -130,6 +130,7 @@
             modesContainer = new PIXI.Container();
             modesContainer.addChild(kennisButton);
             modesContainer.addChild(quizButton);
+            modesContainer.visible = false;
 
             vm.gameScreenController.addContainer(modesContainer);
         }
@@ -194,35 +195,32 @@
             kennisButtonTween.stop();
             quizButtonTween.stop();
 
-            $timeout(function() {
-                new TWEEN.Tween(kennisButton)
-                    .to({
-                        x: 0.5 * vm.gameScreenController.renderer.width,
-                        y: ModesConstants.position.yKennisButtonStart
-                    }, ModesConstants.startDuration)
-                    .easing(TWEEN.Easing.Elastic.Out)
-                    .onComplete(function() {
-                        //;
-                    })
-                    .start();
-            }, ModesConstants.startDelay);
-            $timeout(function() {
-                new TWEEN.Tween(quizButton)
-                    .to({
-                        x: 0.5 * vm.gameScreenController.renderer.width,
-                        y: ModesConstants.position.yQuizButtonStart
-                    }, ModesConstants.startDuration)
-                    .easing(TWEEN.Easing.Elastic.Out)
-                    .onComplete(function() {
-                        //;
-                    })
-                    .start();
-            }, ModesConstants.startDelay);
+            new TWEEN.Tween(kennisButton)
+                .to({
+                    x: 0.5 * vm.gameScreenController.renderer.width,
+                    y: ModesConstants.position.yKennisButtonStart
+                }, ModesConstants.startDuration)
+                .easing(TWEEN.Easing.Elastic.Out)
+                .onComplete(function() {
+                    modesContainer.visible = false;
+                })
+                .start();
+
+            new TWEEN.Tween(quizButton)
+                .to({
+                    x: 0.5 * vm.gameScreenController.renderer.width,
+                    y: ModesConstants.position.yQuizButtonStart
+                }, ModesConstants.startDuration)
+                .easing(TWEEN.Easing.Elastic.Out)
+                .onComplete(function() {
+                    //;
+                })
+                .start();
         }
 
         function showScreen() {
+            modesContainer.visible = true;
             screenVisible = true;
-            $timeout(function() {
                 new TWEEN.Tween(kennisButton)
                     .to({
                         x: 0.5 * vm.gameScreenController.renderer.width,
@@ -233,8 +231,6 @@
                         kennisButtonTween.start();
                     })
                     .start();
-            }, ModesConstants.startDelay + 0.5 * ModesConstants.startDelay);
-            $timeout(function() {
                 new TWEEN.Tween(quizButton)
                     .to({
                         x: 0.5 * vm.gameScreenController.renderer.width,
@@ -245,7 +241,6 @@
                         quizButtonTween.start();
                     })
                     .start();
-            }, ModesConstants.startDelay + 0.5 * ModesConstants.startDelay);
         }
     }
 })();

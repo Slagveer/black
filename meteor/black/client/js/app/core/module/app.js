@@ -11,5 +11,6 @@ angular
         'black.splash',
         'black.modes',
         'black.kennis',
+        'black.nextup',
         'black.levels'
     ]);

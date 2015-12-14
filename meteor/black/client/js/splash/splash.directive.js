@@ -199,7 +199,6 @@
             fistTween.stop();
             blakaTween.stop();
             startButtonTween.stop();
-            $timeout(function() {
                 new TWEEN.Tween(fist.scale)
                     .to({
                         x: 0,
@@ -210,8 +209,6 @@
                         //;
                     })
                     .start();
-            }, SplashConstants.startDelay);
-            $timeout(function() {
                 new TWEEN.Tween(blaka.scale)
                     .to({
                         x: 0,
@@ -222,8 +219,6 @@
                         //;
                     })
                     .start();
-            }, SplashConstants.startDelay);
-            $timeout(function() {
                 new TWEEN.Tween(startButton)
                     .to({
                         x: 0.5 * vm.gameScreenController.renderer.width,
@@ -234,7 +229,6 @@
                         //;
                     })
                     .start();
-            }, SplashConstants.startDelay);
         }
 
         function showScreen() {

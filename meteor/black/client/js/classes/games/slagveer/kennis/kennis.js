@@ -68,7 +68,7 @@ GAME.Kennis.prototype.setTitle =  function(title) {
                 self.title.anchor.set(0.5);
                 self.addChild(self.title);
             } else {
-                self.title._text = title;
+                self.title.text = title;
             }
         }
     });
@@ -94,7 +94,7 @@ GAME.Kennis.prototype.setDescription =  function(description) {
                 self.description.anchor.set(0.5);
                 self.addChild(self.description);
             } else {
-                self.description._text = title;
+                self.description.text = description;
             }
         }
     });
