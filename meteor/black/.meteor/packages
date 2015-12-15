@@ -1,0 +1,21 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-platform
+insecure
+urigo:angular
+grigio:babel
+angularui:angular-ui-bootstrap
+angularui:angular-ui-router
+angular:angular-mocks
+sanjo:jasmine
+velocity:html-reporter
+fds:pixijs
+siyfion:webfontloader
+fds:tweenjs
+underscore
+benjick:telegram-bot
+raix:eventddp
