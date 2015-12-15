@@ -4,7 +4,7 @@
 if (Meteor.isServer) {
 
     Meteor.startup(function() {
-        var em = new EventDDP('telegram');
+        //var em = new EventDDP('telegram');
 
         TelegramBot.token = '174233667:AAFDzCVGdiGbVoQnkcxs1y2pUAPl24kiSeE';
         TelegramBot.token = '179167589:AAHZA5u4aDjEEyspPFtYtkM8W2OGY6YhZmo';
