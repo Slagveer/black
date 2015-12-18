@@ -15,6 +15,7 @@ if (Meteor.isClient) {
                     'yStartButtonStart': 2000,
                     'yStartButtonDiffEnd': 300
                 },
+                'scrollSpeed':500,
                 'startDelay': 4000,
                 'hideScreenDuration': 100,
                 'showScreenDuration': 100,

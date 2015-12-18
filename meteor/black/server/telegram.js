@@ -4,7 +4,7 @@
 if (Meteor.isServer) {
 
     Meteor.startup(function() {
-        //var em = new EventDDP('telegram');
+        var em = new EventDDP('telegram');
 
         TelegramBot.token = '174233667:AAFDzCVGdiGbVoQnkcxs1y2pUAPl24kiSeE';
         TelegramBot.token = '179167589:AAHZA5u4aDjEEyspPFtYtkM8W2OGY6YhZmo';
@@ -16,59 +16,19 @@ if (Meteor.isServer) {
                     if(!checkNo(data)) {
                         if(!checkTitle(data)) {
                             if(!checkDescription(data)) {
-                                console.log(20000000)
+                                console.log(20000000);
                             } else {
-                                console.log(10000000)
+                                console.log(10000000);
                             }
                         }
                     }
                 }
             };
             return;
-            var kb;
-            if(data.message.text === 'cancel') {
-                kb = {
-                    hide_keyboard: true,
-                    selective: false
-                };
-                kb = JSON.stringify(kb);
-                TelegramBot.method('sendMessage', { chat_id: data.message.chat.id, text: 'Cancelled!',
-                        reply_markup:kb
-                    }
-                );
-            } else if(data.message.text === 'yes') {
-                kb = {
-                    hide_keyboard: true,
-                    selective: false
-                };
-                kb = JSON.stringify(kb);
-                TelegramBot.method('sendMessage', { chat_id: data.message.chat.id, text: 'Give up the title?',
-                        reply_markup:kb
-                    }
-                );
-                if (Kennis.find({'chat.message.chat.id':data.message.chat.id, title: { $exists: false }}).count() === 0) {
-                    var kennis = {
-                            'chat': data
-                        };
-                    Kennis.insert(kennis);
-                }
-            } else {
-                kb = {
-                    hide_keyboard: true,
-                    selective: false
-                };
-                kb = JSON.stringify(kb);
-                TelegramBot.method('sendMessage', { chat_id: data.message.chat.id, text: 'Give up the description?',
-                        reply_markup:kb
-                    }
-                );
-            }
-            //TelegramBot.method('sendMessage', { chat_id: original.chat.id, text: '',
-            //        reply_markup:kb,
-            //        parse_mode: 'Markdown'
-            //    }
-            //);
-            em.emit('telegram',{data: data});
+
+            em.addListener('hello', function() {
+                console.log('SERVER HI', _.toArray(arguments));
+            });
         };
         TelegramBot.parsePollResult = function(data) {
             data.map(function (item) {
@@ -99,7 +59,7 @@ if (Meteor.isServer) {
             TelegramBot.triggers.forEach(function (post) {
                 msg = msg + "- " + post.command + "\n"
             });
-            return msg
+            return msg;
         });
         TelegramBot.addListener('/createKnowledge', function(command, username, original) {
             var kb = {
@@ -124,10 +84,6 @@ if (Meteor.isServer) {
                 }
             );
             console.log(command, username);
-            // command[1] will be the first argument, command[2] the second etc
-            // below the bot will reply with 'test: hi' if you sent him /test hi
-            //return "test: " + command[1];
-            //return s;
         });
         TelegramBot.addListener('/geo', function(command, username, original) {
             TelegramBot.method('sendLocation',{
@@ -228,7 +184,7 @@ if (Meteor.isServer) {
             var kb;
 
             if (typeof kennis !== 'undefined') {
-                Kennis.update({'_id': kennis._id}, {title: data.message.text});
+                Kennis.update({'_id': kennis._id}, {$set:{title: data.message.text, description: null}});
                 kb = {
                     hide_keyboard: true,
                     selective: false
@@ -246,10 +202,10 @@ if (Meteor.isServer) {
 
         function checkDescription(data) {
             var kennis = Kennis.findOne({'chat.message.chat.id':data.message.chat.id, description: { $in: [null] }});
-            var kb;
+            var kb; console.log(kennis);
 
             if (typeof kennis !== 'undefined') {
-                Kennis.update({'_id': kennis._id}, {description: data.message.text});
+                Kennis.update({'_id': kennis._id}, {$set: {description: data.message.text}});
                 kb = {
                     hide_keyboard: true,
                     selective: false

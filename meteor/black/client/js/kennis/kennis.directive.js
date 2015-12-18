@@ -82,6 +82,7 @@
 
         function mouseDown() {
             $state.go('game.nextup');
+            em.emit('hello');
         }
 
         function stateChangeStart(event, toState, toParams, fromState, fromParams){

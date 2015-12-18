@@ -1,7 +1,7 @@
 /**
  * Created by Patric on 20-8-2015.
  */
-GAME = {};
+GAME = GAME || {};
 
 GAME.Kennis = function(width, height, xStart, yStart) {
     var filter = new PIXI.filters.ColorMatrixFilter();

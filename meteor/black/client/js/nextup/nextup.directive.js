@@ -127,10 +127,18 @@
             nextupContainer.alpha = 0;
             nextupContainer.addChild(bg);
             nextupContainer.addChild(bg2);
+            vm.scroller = new GAME.Scroller(nextupContainer,NextupConstants.bgImage, vm.gameScreenController.renderer.width, vm.gameScreenController.renderer.height);
             nextupContainer.addChild(boks);
             hideScreen();
 
+            requestAnimationFrame(animate);
+
             vm.gameScreenController.addContainer(nextupContainer);
+        }
+
+        function animate() {
+            vm.scroller.moveViewportXBy(NextupConstants.scrollSpeed);
+            requestAnimationFrame(animate);
         }
 
         function startButtonMouseOver() {
