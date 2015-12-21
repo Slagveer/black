@@ -1,7 +1,9 @@
 /**
  * Created by Patric on 17-12-2015.
  */
-GAME = {};
+if (typeof(GAME) === 'undefined') {
+    this.GAME = {};
+}
 
 GAME.Background = function (image, width, height) {
     var texture = PIXI.Texture.fromImage(image);

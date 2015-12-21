@@ -1,4 +1,6 @@
-GAME = GAME || {};
+if (typeof(GAME) === 'undefined') {
+    this.GAME = {};
+}
 
 GAME.Scroller = function (stage, image, width, height) {
     this.background = new GAME.Background(image, width, height);

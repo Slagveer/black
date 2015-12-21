@@ -44,8 +44,6 @@
         vm.start = start;
         vm.gameScreenController = null;
         vm.gameController = $scope.$parent.gameController;
-        vm.bg = null;
-        vm.bg2 = null;
         vm.blaka = null;
         vm.startButton = null;
 
@@ -56,48 +54,8 @@
         }
 
         function start() {
-            vm.bg = bg =  PIXI.Sprite.fromImage(NextupConstants.bgImage);
-            vm.bg2 = bg2 =  PIXI.Sprite.fromImage(NextupConstants.bgImage);
             vm.boks = boks =  PIXI.Sprite.fromImage(NextupConstants.boksImage);
 
-            //bg.anchor.set(0.5);
-            bg.position.x = bg._width;
-            bg.position.y = 0;
-            bg.width = vm.gameScreenController.renderer.width;
-            bg.scale.x = 1;
-            bg.scale.y = 1;
-            bgTween = new TWEEN.Tween(bg)
-                .to({
-                    x: (0 - bg._width),
-                    y: 0
-                }, 1000)
-                .easing(TWEEN.Easing.Linear.None)
-                .onComplete(function() {
-                    bg.x = 0;
-                    bg.y = 0;
-                    bgTween.start();
-                })
-                //.start();
-            //bg2.anchor.set(0.5);
-            bg2.position.x = bg._width - 10;//vm.gameScreenController.renderer.width;
-            bg2.position.y = 0;
-            bg2.width = vm.gameScreenController.renderer.width;
-            bg2.scale.x = 1;
-            bg2.scale.y = 1;
-            bgTween2 = new TWEEN.Tween(bg2)
-                .to({
-                    x: -5,
-                    y: 0
-                }, 1000)
-                .easing(TWEEN.Easing.Linear.None)
-                .onComplete(function() {
-                    bg2.x = bg2._width - 5;
-                    bg2.y = 0;
-                    bgTween2.start();
-                })
-                //.start();
-            bgTween.start();
-            bgTween2.start();
             boks.anchor.set(0.5);
             boks.position.x = 0.5 * vm.gameScreenController.renderer.width;
             boks.position.y = 0.5 * vm.gameScreenController.renderer.height;
@@ -125,8 +83,6 @@
 
             nextupContainer = new PIXI.Container();
             nextupContainer.alpha = 0;
-            nextupContainer.addChild(bg);
-            nextupContainer.addChild(bg2);
             vm.scroller = new GAME.Scroller(nextupContainer,NextupConstants.bgImage, vm.gameScreenController.renderer.width, vm.gameScreenController.renderer.height);
             nextupContainer.addChild(boks);
             hideScreen();
@@ -175,8 +131,6 @@
 
         function hideScreen() {
             screenVisible = false;
-            //bgTween.stop();
-            //bgTween2.stop();
             new TWEEN.Tween(nextupContainer)
                 .to({
                     alpha: 0
@@ -189,8 +143,6 @@
 
         function showScreen() {
             screenVisible = true;
-            //bgTween.start();
-            //bgTween2.start();
             new TWEEN.Tween(nextupContainer)
                 .to({
                     alpha: 1

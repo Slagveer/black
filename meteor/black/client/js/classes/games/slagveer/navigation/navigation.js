@@ -1,7 +1,9 @@
 /**
  * Created by Patric on 20-8-2015.
  */
-GAME = GAME || {};
+if (typeof(GAME) === 'undefined') {
+    this.GAME = {};
+}
 
 GAME.Navigation = function(image, imageOver, xStart, yStart) {
     var self = this;
